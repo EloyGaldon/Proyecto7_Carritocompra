@@ -4,6 +4,7 @@ var path = require('path');
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var paginate = require('express-paginate');
 //Carga de libreria session-flash
 var flash = require('connect-flash');
 var winston = require('./config/winston');
@@ -13,7 +14,7 @@ var users = require('./routes/users');
 
 var hbs = require('hbs');
 var hbsUtils = require('hbs-utils')(hbs);
-
+require('./helpers/hbs')(hbs);
 var mailer=require('./routes/mailer');
 //partials
 hbs.registerPartials(`${__dirname}/views/partials/`);
@@ -22,7 +23,7 @@ hbs.registerPartials(`${__dirname}/views/partials/`);
 hbsUtils.registerWatchedPartials(`${__dirname}/views/partials/`);
 
 var app = express();
-
+app.use(paginate.middleware(2,20));
 //app.use(logger('dev'));
 app.use(morgan('combined', {stream: winston.stream}));
 app.use(express.json());

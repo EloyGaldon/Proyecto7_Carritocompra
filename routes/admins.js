@@ -6,7 +6,7 @@ const Multer = require('multer');
 const upload =  require('../config/multerConf');
 
 router.get('/adminpanel', function(req, res, next) {
-    destinationsController.getAllDestinations(req, res, next);
+    destinationsController.getAllDestinationsPag(req, res, next);
 });
 
 router.post('/adminpanel/crear',upload.single('file'), function(req, res, next) {
@@ -22,8 +22,14 @@ router.get('/adminpanel/activar/:id', function (req,res,next) {
 
     destinationsController.activaDestination(req, res, next);
 })
+/*
 router.get('/userpanel',function (req,res,next) {
     userController.getAllUsers(req,res,next);
+})
+*/
+router.get('/userpanel',function (req,res,next) {
+    //console.log('entra a la ruta');
+    userController.getAllUsersPag(req,res,next);
 })
 
 router.get('/userpanel/activo/:id',function (req,res,next) {

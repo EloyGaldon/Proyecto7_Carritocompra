@@ -46,6 +46,26 @@ Users.login = (usuario,cb)=>{
     })
 };
 
+Users.getAllUsersPag = (offset, limit, cb)=>{
+    //console.log('entra al modelo');
+    if (!conn) return cb("No se ha podido crear la conexion");
+    conn.query('SELECT * FROM cliente LIMIT ?, ?', [offset, limit], (error, rows) => {
+        if (error) {
+            return cb(error)
+        } else {
+            console.log(rows);
+            conn.query("SELECT COUNT(*) as total FROM cliente", (error, count) => {
+                if (error) {
+                    return cb(error)
+                } else {
+                    return cb(null, {count, rows});
+                }
+
+            })
+        }
+    })
+};
+
 Users.getAllUsers = (cb)=>{
     if (!conn) return cb("No se ha podido crear la conexion");
     conn.query('SELECT * FROM cliente',function (err,usuarios) {

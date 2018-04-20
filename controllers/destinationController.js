@@ -1,5 +1,47 @@
 var destinationsModel = require('../models/destinationsModel');
 var destinationsController = {};
+const paginate = require('express-paginate');
+
+destinationsController.getAllDestinationsPag=(req, res, next)=> {
+    let page=(parseInt(req.query.page) || 1) -1;
+    let limit = 5;
+    let offset = page * limit ;
+    destinationsModel.getAllDestinationsPag(offset, limit, (error, destinos)=>{
+        if(error){
+            return res.status(500).send(error);
+        }else{
+            if(!req.session.username){
+                res.redirect('/');
+            }else{
+                if(req.session.isAdmin){
+                    const currentPage = offset ===0 ? 1:(offset/limit)+1;
+                    const totalCount = destinos.count[0].total;
+                    const pageCount = Math.ceil(totalCount /limit);
+                    const pagination = paginate.getArrayPages(req)(10,pageCount, currentPage);
+
+                    res.render('adminPanel',{
+                        title: 'Panel de administrador',
+                        layout: '../views/templates/default',
+                        destinos: destinos.rows,
+                        currentPage,
+                        links: pagination,
+                        hasNext: paginate.hasNextPages(pageCount),
+                        pageCount,
+                        correcto: req.flash('correcto'),
+                        error: req.flash('error'),
+                        isLogged: true,
+                        isAdmin: true,
+                        user: req.session.username
+                    })
+                }else{
+                    res.redirect('/');
+                }
+            }
+        }
+    })
+};
+
+
 
 destinationsController.getAllDestinations= (req, res, next)=> {
     //console.log("Estoy entrando");

@@ -1,5 +1,5 @@
 {
-  "name": "proyecto4",
+  "name": "proyecto7",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,7 @@
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-paginate": "^0.3.0",
     "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "hbs-utils": "0.0.4",
@@ -32,5 +33,17 @@
   },
   "devDependencies": {
     "nodemon": "^1.17.2"
-  }
+  },
+  "description": "passport,paginacion y carrito compra",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EloyGaldon/Proyecto7_Carritocompra.git"
+  },
+  "author": "eloy galdon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EloyGaldon/Proyecto7_Carritocompra/issues"
+  },
+  "homepage": "https://github.com/EloyGaldon/Proyecto7_Carritocompra#readme"
 }

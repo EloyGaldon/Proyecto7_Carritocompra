@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark menuNav" id="menu">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark menuNav normal" id="menu">
     <a class="navbar-brand" href="/">GeeksHub Travels</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,6 +16,40 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Dónde estamos <span class="sr-only">(current)</span></a>
             </li>
+            <div class="logReg2">
+                {{#if isLogged}}
+                    {{#if isAdmin}}
+                        <div class="btn-group dropleft">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-circle"></i> {{user}}
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/admins/adminpanel">Administrar Viajes</a>
+                                <a class="dropdown-item" href="/admins/userpanel">Administrar Users</a>
+                                <a class="dropdown-item" href="/users/logout">Desconectar</a>
+                            </div>
+                        </div>
+                    {{else}}
+                        <div class="btn-group dropleft">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user-circle"></i> {{user}}
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Mi perfil</a>
+                                <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
+                            </div>
+                        </div>
+                    {{/if}}
+
+                {{else}}
+                        <li class="nav-item botonLog">
+                            <a class="btn btn-sm btn-outline-light" href="/users/signup">Registrarse</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-sm btn-outline-light" href="/users/login">Iniciar Sesión</a>
+                        </li>
+                {{/if}}
+            </div>
         </ul>
     </div>
     <div class="logReg">
@@ -46,10 +80,10 @@
         {{else}}
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item botonLog">
-                    <a class="btn btn-sm btn-outline-secondary" href="/users/signup">Registrarse</a>
+                    <a class="btn btn-sm btn-outline-light" href="/users/signup">Registrarse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-sm btn-outline-secondary" href="/users/login">Iniciar Sesión</a>
+                    <a class="btn btn-sm btn-outline-light" href="/users/login">Iniciar Sesión</a>
                 </li>
             </ul>
         {{/if}}

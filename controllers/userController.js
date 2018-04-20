@@ -2,6 +2,7 @@ var bcrypt = require('bcrypt-nodejs');
 var usersModel =require('.././models/usersModel');
 const Email=require('../config/emailConf');
 var userController = {};
+const paginate = require('express-paginate');
 
 
 userController.signUp = function (req, res, next) {
@@ -130,6 +131,49 @@ userController.logOut= function (req, res, next){
         res.redirect('/');
     }
 };
+userController.getAllUsersPag= function (req, res, next) {
+    //console.log('entra al controlador');
+    let page=(parseInt(req.query.page) || 1) -1;
+    let limit = 5;
+    let offset = page * limit ;
+    usersModel.getAllUsersPag(offset, limit, (error, usuarios)=>{
+        if (error) {
+            res.status(500).json(error);
+        }
+        else {
+            if (!req.session.username) {
+                res.redirect('/');
+            } else {
+                if (req.session.isAdmin) {
+                    console.log('vuelve del modelo');
+                    const currentPage = offset ===0 ? 1:(offset/limit)+1;
+                    const totalCount = usuarios.count[0].total;
+                    const pageCount = Math.ceil(totalCount /limit);
+                    const pagination = paginate.getArrayPages(req)(10,pageCount, currentPage);
+
+                    res.render('userPanel', {
+                        title: 'Panel de administrador',
+                        layout: '../views/templates/default',
+                        usuarios: usuarios.rows,
+                        currentPage,
+                        links: pagination,
+                        hasNext: paginate.hasNextPages(pageCount),
+                        pageCount,
+                        correcto: req.flash('correcto'),
+                        error: req.flash('error'),
+                        isLogged: true,
+                        isAdmin: true,
+                        user: req.session.username
+                    })
+                } else {
+                    res.redirect('/');
+                }
+            }
+        }
+    })
+};
+
+
 
 userController.getAllUsers= function (req, res, next) {
     usersModel.getAllUsers((err, usuarios) => {

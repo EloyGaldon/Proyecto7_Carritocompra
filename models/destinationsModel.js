@@ -2,6 +2,27 @@ let conn= require ('.././connections/mysqlconnection');
 
 let destinations= {};
 
+destinations.getAllDestinationsPag=(offset, limit, cb)=> {
+    if (!conn) return cb("No se ha podido crear la conexion");
+    else {
+        conn.query('SELECT * FROM destinos LIMIT ?, ?', [offset, limit], (error, rows) => {
+            if (error) {
+                return cb(error)
+            } else {
+                //console.log(destinos);
+                conn.query("SELECT COUNT(*) as total FROM destinos", (error, count) => {
+                    if (error) {
+                        return cb(error)
+                    } else {
+                        return cb(null, {count, rows});
+                    }
+
+                })
+            }
+        })
+    }
+};
+
 destinations.getAllDestinations = (cb)=>{
     if (!conn) return cb("No se ha podido crear la conexion");
     conn.query('SELECT * FROM destinos',function (err,destinos) {
@@ -35,7 +56,7 @@ destinations.deleteDestination = (id,cb) =>{
         if (err) return cb(err);
         return cb(err, res);
     })
-}
+};
 
 destinations.activaDestination=(id,cb)=> {
     if (!conn) return cb("No se ha podido crear la conexion");

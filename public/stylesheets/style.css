@@ -11,8 +11,11 @@
 .menuNav{
     z-index: 1;
 }
+.logReg2{
+    display:none;
+}
 .botonLog{
-    margin-right: 2vw;
+    margin-right: 1vw;
 }
 .normal{
     background-color: #00091a;
@@ -37,6 +40,7 @@
     margin-left: 15%;
     text-align: center;
 }
+
 .rsociales{
     padding-top: 1em;
     border-top: 1px solid white;
@@ -102,7 +106,6 @@ nav.navbar-expand-lg {
     position: fixed;
     width: 100vw;
     top: 0px;
-    background-color: transparent !important;
 }
 
 .card {
@@ -460,8 +463,91 @@ footer button:hover,
     border-radius: 15px;
 }
 
+/*  inicio seccion somos*/
+
+#somos{
+    width: 100vw;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("../images/somos.jpg");
+}
+#quienes_somos{
+    background-color: white;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 40px;
+    padding: 2%;
+    border: 1px solid #0D3349;
+    border-radius: 10px;
+}
+hr{
+    width:73%;
+    margin-left: 0px;
+    position: relative;
+    border-color: yellow;
+    margin-top: -4px;
+
+}
+
+#quienes_somos:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+/* Apartado MAPA*/
+
+.formulario{
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+
+.mapa:hover, .formulario:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.wrapper-contacto {
+    /* font-family: 'Teko', sans-serif;*/
+    padding-top: 3%;
+    padding-bottom: 3%;
+
+}
+
+.form-contact .row{
+    margin-bottom: 2%;
+}
+
+
+.hr-contact {
+    border-style: inset;
+    border-width: 3px;
+    border-color: yellow;
+}
+
+.submit{
+    /*float: right;*/
+    margin-top: 2%;
+}
+
+/* FIN apartado MAPA */
+
+.cardModal{
+    transform:translate(-50%,-50%)!important;
+}
+
+.cabFotMod{
+    background-color: rgba(166, 166, 166, 0.6);
+}
 
 @media (max-width: 770px) {
+
+    .logReg2{
+        display:inline;
+    }
+    .logReg{
+        display:none;
+    }
+
+
     #mobile {
         display: inline;
 

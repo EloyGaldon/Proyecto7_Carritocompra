@@ -6,7 +6,7 @@ email.transporter=Nodemailer.createTransport({
         service: 'Gmail',
         auth: {
             user: 'pruebasegg@gmail.com',
-            pass: 'programacion1404'
+            pass: ''
         },
     },
     {

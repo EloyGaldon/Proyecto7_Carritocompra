@@ -11,6 +11,7 @@ var winston = require('./config/winston');
 var indexRouter = require('./routes/routes');
 var admins=require('./routes/admins');
 var users = require('./routes/users');
+var compra= require('./routes/compra');
 
 var hbs = require('hbs');
 var hbsUtils = require('hbs-utils')(hbs);
@@ -49,10 +50,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 app.use('/mailer',mailer);
-
+app.use('/compra',compra);
 app.use('/admins',admins); //de la transparencia
 app.use('/users', users);
 app.use('/', indexRouter);
+
 // catch 404 and forward to error handler
 
 app.use(function(req, res, next) {

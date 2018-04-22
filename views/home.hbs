@@ -23,12 +23,12 @@
                     <div class="hovereffect">
                         <img class="img-fluid" src="{{imagen}}" alt="{{nombre_viaje}}">
                         <div class="overlay">
-                            <h2>{{nombre_viaje}}</h2>
+                            <h2>{{nombre_viaje}} desde <strong>{{precio}} €</strong></h2>
                             <button type="button" class="btn btn-outline-light mt-5" data-toggle="modal" data-target="#viajeModal'{{id}}'">
-                                {{descripcion}} desde <strong>{{precio}} €</strong>
+                                Más detalles del viaje
                             </button>
                             <br>
-                            <button type="button" class="btn btn-outline-warning mt-4">Reservar</button>
+                            <button type="button" class="btn btn-outline-warning mt-4" onclick='window.location.assign("/compra/comprar/{{id}}")'>Reservar</button>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer cabFotMod">
-                                    <button type="button" class="btn btn-warning">Reservar</button>
+                                    <button type="button" class="btn btn-warning" onclick='window.location.assign("/compra/comprar/{{id}}")'>Reservar</button>
                                 </div>
                             </div>
                         </div>
@@ -117,14 +117,15 @@
 </section>
 
 <section>
-    <div class ="row" id="somos">
-        <div class="col-10 col-sm-4 offset-1" id="quienes_somos">
-            <h1>Quienes somos</h1>
-            <hr>
-            <p><i>GeeksHubs Travels es una agencia de viajes online creada e 2009 por un equipo de profecionales y entusiastas que deciden hacer de su pasión por conocer el mundo para 2018 seremos la agencia de viajes preferida por nuestros clientes por seguridad y conpromiso de nuestro personal.</i></p>
+    <div class="container-fluid" id="somos">
+        <div class ="row">
+            <div class="col-10 col-sm-4 offset-1" id="quienes_somos">
+                <h1>Quienes somos</h1>
+                <hr>
+                <p><i>GeeksHubs Travels es una agencia de viajes online creada e 2009 por un equipo de profecionales y entusiastas que deciden hacer de su pasión por conocer el mundo para 2018 seremos la agencia de viajes preferida por nuestros clientes por seguridad y conpromiso de nuestro personal.</i></p>
+            </div>
         </div>
     </div>
-
 
 </section>
 

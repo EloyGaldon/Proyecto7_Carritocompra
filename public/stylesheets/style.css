@@ -8,6 +8,10 @@
     }
     */
 }
+
+.row{
+    width: 100%;
+}
 .menuNav{
     z-index: 1;
 }
@@ -61,7 +65,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
 }
 
 #sectionRegistro {
@@ -71,7 +75,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
 }
 
 #sectionRecovery {
@@ -451,8 +455,8 @@ footer button:hover,
 .wrapper-adminpanel{
     padding-top: 5em;
     padding-bottom: 5em;
-    height: 100vm;
-    background-image: url("/images/vegas.jpg");
+    min-height: 80vh;
+    background-image: url("../images/vegas.jpg");
 }
 .panelAdmin{
     padding-right: 0px;
@@ -466,7 +470,7 @@ footer button:hover,
 /*  inicio seccion somos*/
 
 #somos{
-    width: 100vw;
+    width: 100%;
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -474,9 +478,9 @@ footer button:hover,
 }
 #quienes_somos{
     background-color: white;
-    margin-top: 5%;
-    margin-bottom: 5%;
-    margin-left: 40px;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    margin-left: 5vw;
     padding: 2%;
     border: 1px solid #0D3349;
     border-radius: 10px;
@@ -536,6 +540,32 @@ hr{
 
 .cabFotMod{
     background-color: rgba(166, 166, 166, 0.6);
+}
+
+.detalleCarro{
+    padding:4%;
+    border: 2px solid #00091a;
+    margin-bottom: 2%;
+    border-radius: 15px;
+}
+
+.detalleCarro:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.resumenCarro{
+    background-color: rgba(166, 166, 166, 0.6);
+    text-align: center;
+    height: 40vh;
+    border: 2px solid #00091a;
+    border-radius: 15px;
+}
+.resumenCarro:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.carrito{
+    margin-top:15vh;
 }
 
 @media (max-width: 770px) {

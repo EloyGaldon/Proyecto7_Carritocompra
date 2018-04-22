@@ -1,0 +1,43 @@
+<div class="container fluid">
+    <div class="row carrito">
+        <div class="col-8 detalleCarro">
+            <h3><strong>Tu Carrito</strong> 0 artículos</h3>
+            {{#if destinos.length}}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each destinos}}
+                        <tr>
+                            <td><img src="{{imagen}}" style="width: 5em" alt="{{nombre_viaje}}"/></td>
+                            <td>{{nombre_viaje}}</td>
+                            <td>{{fechas}}</td>
+                            <td>{{descripcion}}</td>
+                            <td>{{precio}}</td>
+                            <td></td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            {{else}}
+                <h4>Tu carrito está vacio</h4>
+            {{/if}}
+        </div>
+        <div class="col-3 pt-5 ml-3 resumenCarro">
+            <h5><strong>Resumen del pedido</strong></h5>
+            <hr>
+            <p><strong> Cantidad de porductos:</strong> 0 </p>
+            <p><strong> Total a pagar :</strong> 0 €</p>
+            <hr>
+            <button type="button" class="btn btn-outline-success"> Comprar </button>
+        </div>
+    </div>
+</div>

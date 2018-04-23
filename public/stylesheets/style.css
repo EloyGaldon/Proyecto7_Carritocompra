@@ -566,8 +566,25 @@ hr{
 
 .carrito{
     margin-top:15vh;
+    min-height: 60vh;
+}
+/* Error 404*/
+.fondo404{
+    background-image: url("../images/otonyo.jpg");
+    background-position: center center;
+    background-size: cover;
+    padding:10em;
+    height: 100vh;
 }
 
+.texto404{
+    padding-top: 20vh;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+    background-color: #00091a;
+    opacity:0.8;
+}
 @media (max-width: 770px) {
 
     .logReg2{

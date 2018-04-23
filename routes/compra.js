@@ -6,21 +6,33 @@ var carritoController = require('../controllers/carritoController');
 
 
 router.get('/carrito', function(req, res, next) {
-    destinationsModel.getDestinations((err,destinos)=> {
-        res.render('carrito', {
-            title: 'Carrito de compra',
-            layout: '../views/templates/default',
-            destinos: destinos
-        });
-    })
+    carritoController.mostrar(req,res,next);
 });
 
-router.get('/comprar/:id', function(req, res, next) {
-    console.log("entra en la ruta");
-    carritoController.addLinea((req, res, next)=> {
-        res.redirect('/carrito');
-        });
-});
+router.get('/deleteAll', function(req,res,next){
+    carritoController.deleteAll(req,res,next);
+})
+
+router.get('/comprar/:id',(req,res,next)=>{
+    //console.log("entra en la ruta");
+    carritoController.addLinea(req,res,next);
+})
+
+router.get('/sumarCant/:id',(req,res,next)=>{
+    //console.log("entra en la ruta");
+    carritoController.sumarCant(req,res,next);
+})
+
+router.get('/restCant/:id',(req,res,next)=>{
+    //console.log("entra en la ruta");
+    carritoController.restCant(req,res,next);
+})
+
+router.get('/deleteProduc/:id',(req,res,next)=>{
+    //console.log("entra en la ruta");
+    carritoController.deleteLinea(req,res,next);
+})
+
 
 
 module.exports = router;

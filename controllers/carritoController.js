@@ -2,44 +2,101 @@ var carroModel=require('../models/carritoModel');
 
 var carroController = {};
 
+
 //const paginate = require('express-paginate');
 
+carroController.mostrar=function(req,res,next){
+
+    if(req.session.compra){
+        var cantidad_productos=0;
+        var precio_total=0;
+        req.session.compra.forEach((item)=>{
+            cantidad_productos+=item.cantidad;
+            precio_total+=item.precio;
+        });
+    }
+    res.render('carrito', {
+        title: 'Carrito de compra',
+        layout: '../views/templates/default',
+        precioTotal:precio_total,
+        cantidadTotal:cantidad_productos,
+        carrito: req.session.compra
+    });
+};
+
 carroController.addLinea=function (req, res, next){
-    console.log("entra al controlador");
+    //console.log("entra al controlador");
+    var nuevo=true;
     carroModel.addLinea(req.params.id,(err,resultado)=>{
         if(err) {
             res.status(500).json(err);
         }else{
-            console.log(resultado);
-            let carrito=[];
+            //console.log(resultado);
             let producto={
-                id_producto:resultado.id,
-                nomb_producto: resultado.nombre_viaje,
+                id_producto:resultado[0].id,
+                nomb_producto: resultado[0].nombre_viaje,
                 cantidad:1,
-                precio:resultado.precio,
-                imagen:resultado.imagen,
-                fecha:resultado.fechas,
-                descripcion:resultado.descripcion
+                precio:resultado[0].precio,
+                imagen:resultado[0].imagen,
+                fecha:resultado[0].fechas,
+                descripcion:resultado[0].descripcion
                 };
+            //console.log(producto);
             if(!req.session.compra){
-                carrito.push(producto);
-                req.session.compra=carrito;
+                req.session.compra = [];
+                req.session.compra.push(producto);
             }else{
-                for(let i=0;i<req.session.compra.length;i++){
-                    if(req.session.compra[i].producto[resultado.id]){
-                        req.session.compra[i].producto[cantidad]++;
-                        req.session.compra[i].producto[precio]=req.session.compra[i].producto[cantidad]*resultado.precio;
+                req.session.compra.forEach((item)=>{
+                    if(item.id_producto==resultado[0].id){
+                        item.cantidad++;
+                        item.precio=item.cantidad*resultado[0].precio;
+                        nuevo=false;
                     }
-                    else{
-                        req.session.compra.push(producto);
-                    }
+                });
+                if(nuevo){
+                    req.session.compra.push(producto);
                 }
             }
+            //console.log("vamos a ver si guarda en session");
+            //console.log(req.session.compra);
+            res.redirect("/#sectionDestinos");
 
         }
     })
-    console.log(req.session.compra);
-};
 
+};
+carroController.deleteLinea=function(req,res,next){
+    let product=req.params.id;
+    req.session.compra = req.session.compra.filter((item)=> {return item.id_producto!=product});
+    res.redirect("/compra/carrito");
+};
+carroController.sumarCant=function(req,res,next){
+    let product=req.params.id;
+    req.session.compra.forEach((item)=> {
+        if (item.id_producto == product) {
+            let precioUni=item.precio/item.cantidad;
+                item.cantidad++;
+                item.precio+=precioUni;
+        }
+    })
+    res.redirect("/compra/carrito");
+}
+
+carroController.restCant=function(req,res,next){
+    let product=req.params.id;
+    req.session.compra.forEach((item)=> {
+        if (item.id_producto == product) {
+            let precioUni=item.precio/item.cantidad;
+            item.cantidad--;
+            item.precio-=precioUni;
+        }
+    })
+    res.redirect("/compra/carrito");
+}
+
+carroController.deleteAll=function (req, res, next){
+    req.session.compra = [];
+    res.redirect("/compra/carrito");
+};
 
 module.exports = carroController;

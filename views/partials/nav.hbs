@@ -36,7 +36,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Mi perfil</a>
-                                <a class="nav-link" href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                                <a class="dropdown-item" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i>{{#if cantidadTotal}}{{cantidadTotal}}{{/if}}</a>
                                 <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <a class="btn btn-sm btn-outline-light" href="/users/login">Iniciar Sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                            <a class="nav-link" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i>{{#if cantidadTotal}}{{cantidadTotal}}{{/if}}</a>
                         </li>
                 {{/if}}
             </div>
@@ -76,7 +76,7 @@
                     </button>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="#">Mi perfil</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                        <a class="dropdown-item" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i>{{#if cantidadTotal}}{{cantidadTotal}}{{/if}}</a>
                         <a class="dropdown-item" href="/users/logout">Cerrar Sesión</a>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
                     <a class="btn btn-sm btn-outline-light mt-2" href="/users/login">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i></a>
+                    <a class="nav-link" href="/compra/carrito"><i class="fas fa-shopping-cart fa-2x"></i> {{#if cantidadTotal}}{{cantidadTotal}}{{/if}}</a>
                 </li>
             </ul>
         {{/if}}

@@ -15,6 +15,8 @@ carroController.mostrar=function(req,res,next){
             precio_total+=item.precio;
         });
     }
+
+    if(!req.session.username){
     res.render('carrito', {
         title: 'Carrito de compra',
         layout: '../views/templates/default',
@@ -22,6 +24,31 @@ carroController.mostrar=function(req,res,next){
         cantidadTotal:cantidad_productos,
         carrito: req.session.compra
     });
+    }else {
+        if (req.session.isAdmin) {
+            res.render('carrito', {
+                title: 'Carrito de compra',
+                layout: '../views/templates/default',
+                precioTotal: precio_total,
+                cantidadTotal: cantidad_productos,
+                isLogged: true,
+                isAdmin: true,
+                user: req.session.username,
+                carrito: req.session.compra
+            });
+        }
+        else {
+            res.render('carrito', {
+                title: 'Carrito de compra',
+                layout: '../views/templates/default',
+                precioTotal: precio_total,
+                cantidadTotal: cantidad_productos,
+                isLogged: true,
+                user: req.session.username,
+                carrito: req.session.compra
+            });
+        }
+    }
 };
 
 carroController.addLinea=function (req, res, next){

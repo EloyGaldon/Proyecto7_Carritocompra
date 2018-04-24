@@ -1,4 +1,4 @@
-<h1>Gestionando sesiones con passport, paginación con handlebars e inicio del carrito de la compra</h1>
+<h1>Paginación con handlebars e inicio del carrito de la compra</h1>
 
 <h5>Condiciones</h5>
 <ul>
@@ -19,6 +19,5 @@ con iva, indicando el iva que se aplica.
 <li>Se utilizará NPM para la instalación de dependencias.
 <li>Se utilizará nodemailer para el envio de los emails de los diferentes procesos.
 <li>Se utilizará Multer para las subidas de archivos al servidor.
-<li>Se utilizará sequelize para gestionar todas las entidades de nuestro proyecto como ORM del mismo.
 <li>Las vistas con las tablas dispondrán de paginación.
-<li>La gestión de sesiones se realizará mediante passport.
+
